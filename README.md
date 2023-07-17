@@ -1,1 +1,48 @@
-# Troubleshooting_AWS_Lambda_Issues_in_Real-time
+# Real-time Scenario
+- AWS Lambda Event based Trigger NOT working ! Why?
+- AWS Lambda NOT Getting Triggered ! Why?
+
+# Troubleshoot your AWS Lambda Issues, Steps:
+
+## Check the correct AWS Event Bridge trgger properly configured mapped to the Lambda
+- What happens in Lambda? AWS lambda triggers whatever it’s talking about either could be Cron based or, it could be Event based.
+- In AWS EventBridge, there are multiple triggers. You need to make sure whether the proper trigger has been assigned to the lambda function. Otherwise, it will not trigger On-time.
+- Go to EventBridge > Events > Check Rules > EC2 instance tagged Lambda > Check EventBridge (CloudWatch Events)
+- Make sure your Lambda has been properly mapped with the correct EventBridge 
+
+## Check the Event based trigger configured with proper JSON
+- Check the respective EventBridge to see whether it is properly configured. Sometimes it would be wrongly configured with the JSON values. So that it should be validated.
+- Go to EventBridge rules > Event pattern > Check “source”, “detail-type”: [“AWS API call via CloudTrail”], “detail”, “eventSource”, “eventName”: [“RunInstances”]. Lambda trigger runs based on a new agent created in CloudTrail.  
+- Go to check CloudTrail > Event history > search bye ‘Event name’, ‘RunInstances’ 
+- If required the edit the Event Pattern
+
+## Check Lambda_handler 
+- Check lambda_handler has been collecting data from the CloudTrail instance_id or NOT; because, sometimes, it takes code from Local source code
+- If it is taking from Local then make sure there is NO Errors
+- Now, Test Lambda function just to make sure NO Errors.
+
+## Check Lambda CloudWatch log groups if any Errors or NOT
+- go to Lambda Function > view logs in CloudWatch > Logs > Log groups > Log Streams 
+- Check each log streams whether any Error or not
+
+## Check Lambda Configuration settings are configured properly
+- Go to lambda > Configuration > Check Triggers, Permissions, Destinations, Func URL, Env variables, Tags, VPC, Monitoring, Concurrency, invocation, code signing, database proxies
+
+## Check CloudTrail is enabled in the same region with lambda
+- Go to CloudTrail > Trails > Ctreate trail in the same region
+
+## Thank You !
+
+# Stay Connected !!
+
+https://www.youtube.com/channel/UCNwP7KEElaJ7cdDTLP-KbBg
+
+https://www.linkedin.com/in/azizul-maqsud/
+
+https://azizulmaqsud-1684501031000.hashnode.dev/
+
+https://medium.com/@azizulmaqsud
+
+https://twitter.com/Sohail2me
+
+https://github.com/azizulmaqsud
